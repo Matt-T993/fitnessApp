@@ -3,10 +3,16 @@ import React from "react";
 
 export default function SettingScreen() {
   return (
-    <View>
+    <View style={styles.container}>
       <Text>SettingScreen</Text>
     </View>
   );
 }
-
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 20,
+    flexDirection: "column",
+    marginBottom: 20,
+  },
+});
