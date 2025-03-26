@@ -1,31 +1,20 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-import { PieChart } from "react-native-gifted-charts";
-
-const pieData = [
-  { value: 70, color: "#177AD5" },
-  { value: 30, color: "lightgray" },
-];
+import HomeCalories from "../components/HomeCalories";
+import AddExercise from "../components/AddExercise";
+import AddMeals from "../components/AddMeals";
 
 export default function HomeScreen() {
   return (
     <View style={styles.container}>
-      <View style={styles.carosol}>
-        <Text style={styles.innerHeader}>Calories</Text>
-        <PieChart
-          donut
-          innerRadius={50}
-          radius={70}
-          data={pieData}
-          centerLabelComponent={() => {
-            return (
-              <View style={{ alignItems: "center" }}>
-                <Text style={{ fontSize: 18 }}>2000 </Text>
-                <Text style={{ fontSize: 14 }}>Remaining</Text>
-              </View>
-            );
-          }}
-        />
+      <HomeCalories />
+      <View style={styles.wrapper}>
+        <View style={styles.leftWrapper}>
+          <AddExercise />
+        </View>
+        <View style={styles.rightWrapper}>
+          <AddMeals />
+        </View>
       </View>
     </View>
   );
@@ -35,19 +24,28 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
+    gap: 30,
   },
-  innerHeader: {
-    fontSize: 24,
-    fontWeight: 800,
-    marginBottom: 10,
+  wrapper: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-around",
+    gap: 20,
+    maxHeight: 150,
   },
-  carosol: {
+
+  leftWrapper: {
     flex: 1,
     backgroundColor: "#fff",
     borderRadius: 10,
-    padding: 20,
-    maxHeight: 250,
-    flexDirection: "column",
-    justifyContent: "flex-start",
+    padding: 10,
+
+    alignItems: "center",
+  },
+  rightWrapper: {
+    flex: 1,
+    backgroundColor: "#fff",
+    borderRadius: 10,
+    padding: 10,
   },
 });
