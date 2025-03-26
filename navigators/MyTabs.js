@@ -1,6 +1,6 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
+import { FontAwesome5 } from "@expo/vector-icons";
 import { View, TouchableOpacity, StyleSheet } from "react-native";
 import HomeScreen from "../screens/HomeScreen";
 import LogsScreen from "../screens/LogsScreen";
@@ -30,21 +30,28 @@ const MyTabs = () => {
           let iconName;
           switch (route.name) {
             case "Home":
-              iconName = focused ? "home" : "home-outline";
+              iconName = "home";
               break;
             case "Logs":
-              iconName = focused ? "list" : "list-outline";
+              iconName = "list";
               break;
             case "Games":
-              iconName = focused ? "handshake" : "handshake-outline";
+              iconName = "handshake";
               break;
             case "Profile":
-              iconName = focused ? "person" : "person-outline";
+              iconName = "user";
               break;
             default:
-              iconName = "help-circle-outline";
+              iconName = "question-circle";
           }
-          return <Ionicons name={iconName} size={size} color={color} />;
+          return (
+            <FontAwesome5
+              name={iconName}
+              size={size}
+              color={color}
+              solid={focused}
+            />
+          );
         },
         tabBarActiveTintColor: "#3498db",
         tabBarInactiveTintColor: "gray",
@@ -61,11 +68,11 @@ const MyTabs = () => {
       {/* Floating + Button in the Middle */}
       <Tab.Screen
         name="Add"
-        component={HomeScreen} // Change this to the screen you want to open
+        component={HomeScreen} // Change to your desired screen
         options={{
           tabBarButton: (props) => (
             <FloatingTabButton {...props}>
-              <Ionicons name="add" size={32} color="white" />
+              <FontAwesome5 name="plus" size={24} color="white" />
             </FloatingTabButton>
           ),
         }}
@@ -79,7 +86,9 @@ const MyTabs = () => {
 
 const styles = StyleSheet.create({
   floatingButton: {
-    top: -20, // Moves the button higher than the tab bar
+    position: "absolute",
+    bottom: 15, // distance from bottom of the screen
+    alignSelf: "center", // center horizontally
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#3498db",
@@ -91,7 +100,9 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     shadowRadius: 4,
     elevation: 5,
+    zIndex: 10, // ensure it's above the tab bar
   },
+
   floatingButtonContainer: {
     justifyContent: "center",
     alignItems: "center",
